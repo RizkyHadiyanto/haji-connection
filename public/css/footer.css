@@ -1,0 +1,112 @@
+.footer {
+    background: #24A29F url(/bsi_assets/vendor2/images/background_footer.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    border-top: 34px solid #F6AD3C;
+}
+
+
+.dropdown-menu-center {
+    right: auto!important;
+    left: 50%!important;
+    transform: translate3d(-50%,-110%,0px)!important;
+    padding: 0px!important
+}
+
+.logo-footer {
+    width: 250px;
+    margin-bottom: 16px
+}
+
+.logo-partner {
+    height: 40%
+}
+
+.socmed-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+    margin-bottom: 8px
+}
+
+.dropdown-indicator {
+    position: absolute;
+    left: 45%;
+    transform: translate(-50%,-50%);
+    z-index: -1
+}
+
+.footer-email-text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18.6px;
+    line-height: 28px;
+    color: #fff;
+    margin-bottom: 40px
+}
+
+.footer-address {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff;
+    margin-bottom: 32px
+}
+
+.footer-title {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    color: #fff;
+    margin-bottom: 14px
+}
+
+@media screen and (min-width: 992px) {
+    .col-lg-offset-1 {
+        margin-left:8.333333%
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer-mobile {
+        margin-bottom:62px
+    }
+
+    .footer-copyright {
+        text-align: center
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .logo-partner {
+        width:90px
+    }
+
+    .logo-footer {
+        width: 60%
+    }
+
+    .socmed-icon {
+        width: 2.4rem;
+        height: 2.4rem
+    }
+
+    .footer-title {
+        font-size: 1rem!important
+    }
+
+    .dropdown-menu-left-sm {
+        right: auto!important;
+        left: 50%!important;
+        transform: translate3d(-10%,-110%,0px)!important;
+        padding: 0px!important
+    }
+
+    .dropdown-indicator {
+        left: 50%
+    }
+
+    .dropdown-indicator-left-sm {
+        left: 10%
+    }
+}
