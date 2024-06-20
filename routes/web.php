@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\tblbpkhController;
+use App\Http\Controllers\AkadWakalahController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SessionController::class, 'index'])->name('login');
@@ -32,7 +34,7 @@ Route::get('/profile', function () {
 //         "title"=>"cek"
 //     ]);
 // });
-
+Route::post('/generate-akad-wakalah', [AkadWakalahController::class, 'generateAkad']);
 // Route::get('/login', function () {   
 //     return view('sesi/login');
 
@@ -50,5 +52,8 @@ Route::get('/login', [SessionController::class, 'index']);
 // -> name ('login/login')
 Route::post('/sesi/login', [SessionController::class, 'login']);
 Route::get('/sesi/logout', [SessionController::class, 'logout']);
+
+
+// Route::post('/generate-akad-wakalah', [tblbpkhController::class, 'generateAkadWakalah']);
 
 

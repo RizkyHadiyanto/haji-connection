@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class tblbpkhController extends Controller
 {
@@ -165,4 +166,19 @@ class tblbpkhController extends Controller
         // return redirect('/nasabah')->with('succes', 'Berhasil hapus data');
         
     }
+
+    // public function generateAkadWakalah(Request $request)
+    // {
+    //     $response = Http::post('http://localhost:8083/api/webteller/api/dofrontend/wakalah', [
+    //         'no_validasi' => $request->input('no_validasi')
+    //     ]);
+
+    //     if ($response->successful()) {
+    //         // Process the response data
+    //         return response()->json($response->json());
+    //     } else {
+    //         // Handle error
+    //         return response()->json(['error' => 'Unable to process request'], $response->status());
+    //     }
+    // }
 }

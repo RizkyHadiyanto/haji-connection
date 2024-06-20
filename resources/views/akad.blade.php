@@ -33,6 +33,22 @@
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
+
+
+    <!-- Toastr CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+    <style>
+        #toast-container {
+            position: fixed;
+            top: 75px;
+            right: 12px;
+            z-index: 1060;
+        }
+    </style>    
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
@@ -168,25 +184,35 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6 mb-1">
-                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                <input type="text" class="form-control" placeholder=""
-                                                    aria-label="Example text with button addon"
-                                                    aria-describedby="button-addon1">
-                                                <button class="btn btn-primary" type="button"
-                                                    id="button-addon1">Generate</button>
-                                            </div>
+                                            <form action="/generate-akad-wakalah" method="POST" >
+                                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                    @csrf
+                                                    <input type="text" name="no_validasi" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                                    <button class="btn btn-primary" type="submit" id="button-addon1">Generate</button>
+                                                </div>
+                                            </form>
+                                            <div id="result"></div>
                                         </div>
                                     </div>
                                 </div>
+                                {{-- <div id="result"></div> <!-- Placeholder for result --> --}}
+                                {{-- @if(session('data'))
+                                <div id="result">
+                                    <pre>{{ print_r(session('data'), true) }}</pre>
+                                </div>
+                                @endif --}}
+                                @if(session('data'))
+                                <div id="result">
+                                    <textarea rows="10" cols="100">{{ json_encode(session('data')) }}</textarea>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
         </div>
+        </section>
         </div>
-        </div>
-
     </main><!-- End #main -->
 
 
@@ -202,7 +228,66 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        @if(session('success'))
+            toastr.success("{{ session('success') }}");
+        @elseif(session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+    </script>
 
+    {{-- <script>
+        function generateAkadWakalah() {
+            const inputValue = document.querySelector('input[type="text"]').value;
+
+            fetch('http://localhost:8083/api/webteller/api/dofrontend/wakalah', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ no_validasi: inputValue })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // Process the response data
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        }
+    </script> --}}
+
+    {{-- <script>
+        function generateAkadWakalah() {
+            const inputValue = document.getElementById('no-validasi').value;
+
+            fetch('/generate-akad-wakalah', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify({
+                        no_validasi: inputValue
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerText = JSON.stringify(data);
+                    // Show success toast
+                    toastr.success('Data successfully downloaded');
+                })
+                .catch(error => {
+                    console.error(error);
+                    document.getElementById('result').innerText = 'Error: Unable to process request';
+                    toastr.error('Error: Unable to process request');   
+                });
+        }
+    </script> --}}
 </body>
 
 </html>
